@@ -1,0 +1,80 @@
+<resources>
+    <string name="app_name">weather</string>
+    <string-array name="cities">
+        <item>北京</item>
+        <item>上海</item>
+        <item>广州</item>
+        <item>深圳</item>
+        <item>成都</item>
+        <item>杭州</item>
+        <item>武汉</item>
+        <item>重庆</item>
+        <item>西安</item>
+        <item>天津</item>
+        <item>南京</item>
+        <item>长沙</item>
+        <item>青岛</item>
+        <item>大连</item>
+        <item>厦门</item>
+        <item>沈阳</item>
+        <item>合肥</item>
+        <item>郑州</item>
+        <item>济南</item>
+        <item>福州</item>
+        <item>昆明</item>
+        <item>苏州</item>
+        <item>佛山</item>
+        <item>东莞</item>
+        <item>无锡</item>
+        <item>宁波</item>
+        <item>南昌</item>
+        <item>贵阳</item>
+        <item>南宁</item>
+        <item>海口</item>
+        <item>唐山</item>
+        <item>烟台</item>
+        <item>潍坊</item>
+        <item>淄博</item>
+        <item>济宁</item>
+        <item>临沂</item>
+        <item>泰安</item>
+        <item>德州</item>
+        <item>聊城</item>
+        <item>滨州</item>
+        <item>菏泽</item>
+        <item>襄阳</item>
+        <item>宜昌</item>
+        <item>荆州</item>
+        <item>株洲</item>
+        <item>湘潭</item>
+        <item>衡阳</item>
+        <item>邵阳</item>
+        <item>岳阳</item>
+        <item>常德</item>
+        <item>张家界</item>
+        <item>益阳</item>
+        <item>郴州</item>
+        <item>永州</item>
+        <item>怀化</item>
+        <item>娄底</item>
+        <item>珠海</item>
+        <item>汕头</item>
+        <item>韶关</item>
+        <item>河源</item>
+        <item>梅州</item>
+        <item>汕尾</item>
+        <item>阳江</item>
+        <item>清远</item>
+        <item>东莞</item>
+        <item>中山</item>
+        <item>潮州</item>
+        <item>揭阳</item>
+        <item>云浮</item>
+    </string-array>
+
+
+
+
+
+
+</resources>
