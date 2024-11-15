@@ -9,7 +9,7 @@ import retrofit2.http.Query;
 
 public interface ApiService {
     @GET("free/week")
-    Call<WeatherInfo> getWeather(@Query("appid") String appid, @Query("appsecret") String appsecret);
+    Call<WeatherInfo> getWeather(@Query("appid") String appid, @Query("appsecret") String appsecret, @Query("city") String city);
 //    Call<ResponseBody> getWeather(@Query("appid") String appid,@Query("appsecret") String appsecret,@Query("cityid") String cityid,@Query("city") String city,@Query("ip") String ip,@Query("callback") String callback,@Query("vue") String vue,@Query("unescape") int unescape);
 
 }
