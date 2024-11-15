@@ -3,6 +3,7 @@ package com.app.weather;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatSpinner;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.os.Handler;
@@ -16,6 +17,7 @@ import android.widget.ArrayAdapter;
 import com.app.weather.databinding.ActivityMainBinding;
 import com.app.weather.entity.WeatherInfo;
 import com.app.weather.util.ApiService;
+import com.app.weather.util.WeatherResUtil;
 
 import java.util.List;
 
@@ -51,12 +53,14 @@ public class MainActivity extends AppCompatActivity {
                         WeatherInfo.DataDTO todayWeather = list.get(0);
                         if (todayWeather != null) {
                             //处理UI更新
-                            binding.ivWeather.setBackgroundResource(getWeatherImgResId(todayWeather.getWea_img()));
+                            //当天天气状况展示
+                            binding.ivWeather.setBackgroundResource(WeatherResUtil.getWeatherImgResId(todayWeather.getWea_img()));
                             binding.tvTemperature.setText(todayWeather.getWea());
                             binding.tvWeather.setText(todayWeather.getWea() + "(" + todayWeather.getDate() + ")");
                             binding.tvTemperatureRange.setText(todayWeather.getTem_night() + "℃~" + todayWeather.getTem_day() + "℃");
                             binding.tvWind.setText(todayWeather.getWin() + todayWeather.getWin_speed());
                         }
+                        //未来天气展示
                     }
                     break;
                 default:
@@ -64,44 +68,7 @@ public class MainActivity extends AppCompatActivity {
         }
     };
 
-    private int getWeatherImgResId(String wea) {
-        //固定9种类型(您也可以根据wea字段自己处理):
-        //xue、lei、shachen、wu、bingbao、yun、yu、yin、qing
-        int resId = 0;
-        switch (wea) {
-            case "xue":
-                resId = R.drawable.img_weather_xue;
-                break;
-            case "lei":
-                resId = R.drawable.img_weather_lei;
-                break;
-            case "shachen":
-                resId = R.drawable.img_weather_shachen;
-                break;
-            case "wu":
-                resId = R.drawable.img_weather_wu;
-                break;
-            case "bingbao":
-                resId = R.drawable.img_weather_bingbao;
-                break;
-            case "yun":
-                resId = R.drawable.img_weather_yun;
-                break;
-            case "yin":
-                resId = R.drawable.img_weather_yin;
-                break;
-            case "yu":
-                resId = R.drawable.img_weather_yu;
-                break;
-            case "qing":
-                resId = R.drawable.img_weather_qing;
-                break;
-            default:
-                resId = R.drawable.img_weather_qing;
-                break;
-        }
-        return resId;
-    }
+
 
 
     @Override
