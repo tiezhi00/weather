@@ -67,8 +67,8 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     };
-
-
+    private ApiService apiService;
+    private Retrofit retrofit;
 
 
     @Override
@@ -78,12 +78,19 @@ public class MainActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
         initViews();
         initListener();
+        initData();
     }
 
-    private void initListener() {
-    }
+    private void initData() {
+        //获取数据，体现在控件上
+        //初始化网络请求
+        retrofit = new Retrofit.Builder()
+                .baseUrl(baseUrl)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
 
-    private void initViews() {
+        apiService = retrofit.create(ApiService.class);
+        //获取spinner数据
         cities = getResources().getStringArray(R.array.cities);
         adapter = new ArrayAdapter<>(this, R.layout.sp_item_layout, cities);
         //关联Adapter
@@ -94,7 +101,6 @@ public class MainActivity extends AppCompatActivity {
                 String city = cities[i];
                 Log.i(TAG, "--------onItemSelected: city=" + city);
                 getWeatherOfCity(city);
-
             }
 
             @Override
@@ -103,25 +109,32 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        //
+    }
+
+    private void initListener() {
+    }
+
+    private void initViews() {
+        //初始化控件
+
+
     }
 
     private void getWeatherOfCity(String city) {
+        Log.i(TAG, "--------getWeatherOfCity: ");
         //开启子线程，请求网络
+        dogetWeather(city);
+    }
+
+    private void dogetWeather(String city) {
+        Log.i(TAG, "-------dogetWeather: ");
         new Thread(new Runnable() {
             @Override
             public void run() {
-                //请求网络请求
-                Retrofit retrofit = new Retrofit.Builder()
-                        .baseUrl(baseUrl)
-                        .addConverterFactory(GsonConverterFactory.create())
-                        .build();
-
-                ApiService apiService = retrofit.create(ApiService.class);
-
                 apiService.getWeather("86655557", "v0e6H7kC", city).enqueue(new Callback<WeatherInfo>() {
                     @Override
                     public void onResponse(Call<WeatherInfo> call, Response<WeatherInfo> response) {
+                        Log.i(TAG, "-----onResponse: 请求成功");
                         if (response.isSuccessful()) {
                             weatherInfo = response.body();
                             // 处理获取到的数据
@@ -141,12 +154,11 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onFailure(Call<WeatherInfo> call, Throwable t) {
                         // 处理网络请求失败
+                        Log.i(TAG, "------onFailure: t=" + t.toString());
 
                     }
                 });
             }
         }).start();
-
-
     }
 }
