@@ -18,6 +18,8 @@ import java.util.List;
 
 public class WeatherListAdapter extends BaseQuickAdapter<WeatherInfo.DataDTO, QuickViewHolder> {
     //构造方法传入数据
+    public WeatherListAdapter() {
+    }
     public WeatherListAdapter(List<WeatherInfo.DataDTO> list) {
         setItems(list);
     }

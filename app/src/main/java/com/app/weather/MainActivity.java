@@ -14,6 +14,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 
+import com.app.weather.adapter.WeatherListAdapter;
 import com.app.weather.databinding.ActivityMainBinding;
 import com.app.weather.entity.WeatherInfo;
 import com.app.weather.util.ApiService;
@@ -61,6 +62,9 @@ public class MainActivity extends AppCompatActivity {
                             binding.tvWind.setText(todayWeather.getWin() + todayWeather.getWin_speed());
                         }
                         //未来天气展示
+                        //更新数据
+                        weatherListAdapter.setItems(list);
+                        weatherListAdapter.notifyDataSetChanged();
                     }
                     break;
                 default:
@@ -69,6 +73,7 @@ public class MainActivity extends AppCompatActivity {
     };
     private ApiService apiService;
     private Retrofit retrofit;
+    private WeatherListAdapter weatherListAdapter;
 
 
     @Override
@@ -116,6 +121,10 @@ public class MainActivity extends AppCompatActivity {
 
     private void initViews() {
         //初始化控件
+        //创建adapter对象
+        weatherListAdapter = new WeatherListAdapter();
+        //RecyclerView到Adapter
+        binding.recyclerView.setAdapter(weatherListAdapter);
 
 
     }
